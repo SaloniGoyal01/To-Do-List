@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.todo-list {
+    width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#task-input {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+}
+
+#add-task-btn {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    font-size: 18px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+#add-task-btn:hover {
+    background-color: #3e8e41;
+}
+
+#task-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.task {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.task:last-child {
+    border-bottom: none;
+}
+
+.task span {
+    float: right;
+    cursor: pointer;
+}
+    </style>
+</head>
+<body>
+    <div class="todo-list">
+        <h1>To-Do List</h1>
+        <input type="text" id="task-input" placeholder="Enter a task">
+        <button id="add-task-btn">Add Task</button>
+        <ul id="task-list"></ul>
+    </div>
+
+    <script>
+let taskInput = document.getElementById('task-input');
+let addTaskBtn = document.getElementById('add-task-btn');
+let taskList = document.getElementById('task-list');
+
+// Add event listener to add task button
+addTaskBtn.addEventListener('click', addTask);
+
+// Function to add task
+function addTask() {
+    let taskValue = taskInput.value.trim();
+
+    if (taskValue !== '') {
+        let task = document.createElement('LI');
+        task.className = 'task';
+        task.innerHTML = taskValue + '<span>&times;</span>';
+
+        // Add event listener to delete task
+        task.querySelector('span').addEventListener('click', deleteTask);
+
+        taskList.appendChild(task);
+        taskInput.value = '';
+    }
+}
+
+// Function to delete task
+function deleteTask(e) {
+    let task = e.target.parentNode;
+    taskList.removeChild(task);
+}
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
